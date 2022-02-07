@@ -17,11 +17,11 @@ This application uses `vite` as the tool for bundling and running because its sm
 git clone https://github.com/ivillamil/github-topic-explorer
 ```
 - To interact with the Github GraphQL API you'll need to have a [Github Personal Access Token](https://docs.github.com/en/free-pro-team@latest/graphql/guides/forming-calls-with-graphql#authenticating-with-graphql)
-- Once you have your token, paste in the `.env` file:
+- Once you have your token, paste it in the `.env` file:
 ```
 VITE_GITHUB_TOKEN=<your_token_here>
 ```
-- Download all module dependencies and run the app. In the project root folder run the following command:
+- To download all module dependencies and run the app, run the following command in the root project folder:
 #### yarn
 ```
 yarn
