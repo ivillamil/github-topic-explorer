@@ -7,7 +7,8 @@ It uses **Github GraphQL API** to list [Topics](https://docs.github.com/en/graph
 This application uses `vite` as the tool for bundling and running because its smaller and faster than other options like Create React App. For more details see [Why vite](https://vitejs.dev/guide/why.html).
 
 ## Dependencies
-- Apollo client: for graphql and react integration.
+- **Apollo client** for graphql and react integration.
+- **Jest** and **react-testing-library** for unit testing.
 
 ## Hot to run the app
 
@@ -21,7 +22,7 @@ git clone https://github.com/ivillamil/github-topic-explorer
 VITE_GITHUB_TOKEN=<your_token_here>
 ```
 - Download all module dependencies and run the app. In the project root folder run the following command:
-### yarn
+#### yarn
 ```
 yarn
 yarn dev
@@ -29,10 +30,16 @@ yarn dev
 
 or
 
-### npm
+#### npm
 ```
 npm install
 npm run dev
 ```
-- Enjoy
 
+## How to test the app
+- without coverage: `npm test` or `yarn test`
+- with test coverage: `npm run coverage` or `yarn run coverage`
+
+## Possible Further improvements
+- Add unit tests for `App` component
+- Add browser navigation to allow users to go backwards on search history
