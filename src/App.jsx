@@ -1,3 +1,4 @@
+import React from 'react'
 import { useEffect, useState } from 'react'
 import {useLazyQuery} from '@apollo/client'
 import * as queries from './constants/queries'
@@ -7,22 +8,13 @@ import TopicsList from './components/TopicsList'
 
 const DEFAULT_TOPIC = 'react'
 
-function App() {
+export default function App() {
   const [topic, setTopic] = useState(DEFAULT_TOPIC)
   const [getTopics, {data, loading}] = useLazyQuery(queries.TOPICS_QUERY, {
     variables: { topic, limit: 10 }
   })
 
-  const handleSelected = (topic) => {
-    setTopic(topic)
-  }
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault()
-    if(e.target['search'].value.length <= 2) return
-    setTopic(e.target['search'].value)
-    e.target.reset()
-  }
+  const handleSelected = (topic) => { setTopic(topic) }
 
   useEffect(() => {
     getTopics()
@@ -33,7 +25,7 @@ function App() {
       <div className={styles.App}>
         <header className={styles.Header}>
           <h1 className={styles.Title}>Github Topic Explorer</h1>
-          <SearchForm onSubmit={handleSearchSubmit} />
+          <SearchForm onSearch={handleSelected} />
         </header>
         <section className={styles.Results}>
           <h2 className={styles.MetaInfo}>
@@ -52,5 +44,3 @@ function App() {
     </main>
   )
 }
-
-export default App

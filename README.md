@@ -1,5 +1,5 @@
 # GITHUB TOPIC EXPLORER
-Application that shows github related topics of an expecified topic and its stargazers.
+React application that shows github related topics of an expecified topic and its stargazers.
 
 It uses **Github GraphQL API** to list [Topics](https://docs.github.com/en/graphql/reference/objects#topic) Objects and its [Stargazers](https://docs.github.com/en/graphql/reference/objects#stargazerconnection) count
 
