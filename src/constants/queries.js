@@ -1,3 +1,5 @@
+import {gql} from '@apollo/client'
+
 export const TOPICS_QUERY = gql`
   query($topic: String!, $limit: Int!) {
     topic(name: $topic) {

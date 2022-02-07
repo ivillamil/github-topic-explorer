@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
-import {gql, useLazyQuery} from '@apollo/client'
+import {useLazyQuery} from '@apollo/client'
 import * as queries from './constants/queries'
 import styles from './App.module.css'
+import SearchForm from './components/SearchForm'
+import TopicsList from './components/TopicsList'
 
 const DEFAULT_TOPIC = 'react'
 
@@ -11,7 +13,7 @@ function App() {
     variables: { topic, limit: 10 }
   })
 
-  const handleItemSelected = (topic) => () => {
+  const handleSelected = (topic) => {
     setTopic(topic)
   }
 
@@ -31,26 +33,17 @@ function App() {
       <div className={styles.App}>
         <header className={styles.Header}>
           <h1 className={styles.Title}>Github Topic Explorer</h1>
-          <form className={styles.SearchForm} onSubmit={handleSearchSubmit}>
-            <input type="search" placeholder='Type the topic here' name='search' />
-            <button>Search</button>
-          </form>
+          <SearchForm onSubmit={handleSearchSubmit} />
         </header>
         <section className={styles.Results}>
           <h2 className={styles.MetaInfo}>
             Showing related topics for:
             <strong> {topic} </strong>(stars: {data?.topic?.stargazerCount})
           </h2>
-          {data && (
-            <ul>
-              {data.topic?.relatedTopics?.map(topic => (
-                <li className={styles.Item} key={topic.id} onClick={handleItemSelected(topic.name)}>
-                  <h3 className={styles.ItemTitle}>{topic.name}</h3>
-                  <p>stars: {topic.stargazerCount}</p>
-                </li>
-              ))}
-            </ul>
-          )}
+          <TopicsList
+            onSelected={handleSelected}
+            topics={data?.topic?.relatedTopics}
+          />
           {loading && (
             <p>Loading...</p>
           )}
